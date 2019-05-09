@@ -28,6 +28,7 @@ import ToolBarComponent from './Components/ToolBarComponent/ToolBarComponent';
 import IconsComponent from './Components/IconsComponent/IconsComponent';
 import ListComponent from './Components/ListComponent/ListComponent';
 import FetchComponent from './Components/FetchComponent/FetchComponent';
+//import SceneComponent from './Components/SceneComponent/SceneComponent';
 
 const imagesAPIURL = "https://jsonplaceholder.typicode.com/photos";
 
@@ -142,6 +143,7 @@ export default class App extends Component<Props> {
           <ImageGalleryComponent URL= { imagesAPIURL } />
           <TouchableComponent onPress={ this.onTouchablePress } contentText={touchableText} />
           <TouchableComponentAlt onPress={ this.onTouchablePress } contentText={touchableText} />
+          {/*<SceneComponent />*/}
         </View>
       </ScrollView>
     );

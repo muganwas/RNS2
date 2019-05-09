@@ -3,7 +3,7 @@ import { View, Text, } from 'react-native';
 import PropTypes from 'prop-types';
 import { styles } from './styles';
 
-export default class SimpleComponent1 extends Component {
+export default class Component2 extends Component {
     render(){
         return(
             <View syle= { styles.container }>
@@ -15,11 +15,11 @@ export default class SimpleComponent1 extends Component {
     }
 }
 
-SimpleComponent1.defaultProps = {
-    message: "Welcome to React Native!"
+Component2.defaultProps = {
+    message: "Welcome to component dos!"
 }
 
-SimpleComponent1.propTypes = {
+Component2.propTypes = {
     message: PropTypes.string.isRequired
     
 }
