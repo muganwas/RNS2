@@ -3,19 +3,19 @@ import { View, Text, TouchableHighlight } from 'react-native';
 import PropTypes from 'prop-types';
 import { styles } from './styles';
 
-export default class Component1 extends Component {
+export default class Component2 extends Component {
     static navigationOptions = {
-        title: 'Welcome',
+        title: 'Asante',
     };
     render() {
-        const { navigate } = this.props.navigation;
+        const { navigation, message } = this.props;
+        const { navigate } = navigation;
         return(
             <View syle= { styles.container }>
                 <View style={ styles.innerEl }>
                     <TouchableHighlight
                         underlayColor="#e8e9ea"
-                        title="Welcome to Nave"
-                        onPress = { ()=>navigate("Home") }
+                        onPress = { ()=>navigate('Third') }
                         style={ styles.innerEl }
                     >
                         <Text style= { styles.welcome}>{ message }</Text>
@@ -26,11 +26,10 @@ export default class Component1 extends Component {
     }
 }
 
-Component1.defaultProps = {
-    message: "Welcome to component uno"
+Component2.defaultProps = {
+    message: "Proceed"
 }
 
-Component1.propTypes = {
+Component2.propTypes = {
     message: PropTypes.string.isRequired
-    
 }
