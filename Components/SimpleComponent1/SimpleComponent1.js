@@ -20,6 +20,5 @@ SimpleComponent1.defaultProps = {
 }
 
 SimpleComponent1.propTypes = {
-    message: PropTypes.string.isRequired
-    
+    message: PropTypes.string.isRequired 
 }

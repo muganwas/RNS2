@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
 import PropTypes from 'prop-types';
 import { styles } from './styles';
+import AsyncComponent from '../AsyncComponent/AsyncComponent';
 
 export default class Component1 extends Component {
     static navigationOptions = {
@@ -18,7 +19,7 @@ export default class Component1 extends Component {
                         onPress = { ()=>navigate('Second') }
                         style={ styles.innerEl }
                     >
-                        <Text style= { styles.welcome}>{ message }</Text>
+                        <AsyncComponent />
                     </TouchableHighlight>
                 </View>
             </View>
