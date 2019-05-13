@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
 import PropTypes from 'prop-types';
 import { styles } from './styles';
-import AsyncComponent from '../AsyncComponent/AsyncComponent';
+import CameraRollComponent from '../CameraRollComponent/CameraRollComponent';
 
 export default class Component1 extends Component {
     static navigationOptions = {
@@ -14,13 +14,7 @@ export default class Component1 extends Component {
         return(
             <View syle= { styles.container }>
                 <View style={ styles.innerEl }>
-                    <TouchableHighlight
-                        underlayColor="#e8e9ea"
-                        onPress = { ()=>navigate('Second') }
-                        style={ styles.innerEl }
-                    >
-                        <AsyncComponent />
-                    </TouchableHighlight>
+                    <CameraRollComponent />
                 </View>
             </View>
         )
