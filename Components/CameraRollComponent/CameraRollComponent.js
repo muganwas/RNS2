@@ -4,10 +4,10 @@ import {
     Text, 
     CameraRoll, 
     ScrollView, 
-    Image, 
-    ToolbarAndroid, 
+    Image,
     ActivityIndicator,
-    PermissionsAndroid
+    PermissionsAndroid,
+    Platform
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { styles } from './styles';
@@ -18,8 +18,7 @@ async function requestExternalStoragePermission() {
         PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
         {
           title: 'Sample App',
-          message:
-            'Sample App needs access to your photos ',
+          message:'Sample App needs access to your photos ',
           buttonNeutral: 'Ask Me Later',
           buttonNegative: 'Cancel',
           buttonPositive: 'OK',
@@ -45,7 +44,8 @@ export default class CameraRollComponent extends Component {
     }
 
     componentWillMount(){
-        requestExternalStoragePermission();
+        if(Platform.OS === "android")
+            requestExternalStoragePermission();
         CameraRoll.getPhotos({first: 5}).then(res=>{
             //console.log(res);
             let edgesArr = res.edges;
