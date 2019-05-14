@@ -3,7 +3,7 @@ import { View, Text, } from 'react-native';
 import PropTypes from 'prop-types';
 import { styles } from './styles';
 
-export default class SimpleComponent1 extends Component {
+export default class GeoLocationComponent extends Component {
     constructor(){
         super();
         this.state = {
