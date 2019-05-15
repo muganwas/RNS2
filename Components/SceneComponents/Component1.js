@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
 import PropTypes from 'prop-types';
 import { styles } from './styles';
-import ClipBoardComponent from '../ClipBoardComponent/ClipBoardComponent';
+import ShareComponent from '../ShareComponent/ShareComponent';
 
 export default class Component1 extends Component {
     static navigationOptions = {
@@ -14,7 +14,7 @@ export default class Component1 extends Component {
         return(
             <View syle= { styles.container }>
                 <View style={ styles.innerEl }>
-                    <ClipBoardComponent />
+                    <ShareComponent />
                 </View>
             </View>
         )
