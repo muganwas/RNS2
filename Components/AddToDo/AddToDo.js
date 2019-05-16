@@ -4,6 +4,20 @@ import PropTypes from 'prop-types';
 import { styles } from './styles';
 
 export default class SimpleComponent1 extends Component {
+    constructor(){
+        super();
+    }
+
+    static navigationOptions = {
+        title: 'Add To Dos',
+        headerTitleStyle :{
+            textAlign: 'center'
+        },
+        headerStyle:{
+            backgroundColor:'white',
+        },
+    }
+
     render(){
         return(
             <View style= { styles.container }>
@@ -16,7 +30,7 @@ export default class SimpleComponent1 extends Component {
 }
 
 SimpleComponent1.defaultProps = {
-    message: "Welcome to React Native!"
+    message: "Welcome to add to do"
 }
 
 SimpleComponent1.propTypes = {
