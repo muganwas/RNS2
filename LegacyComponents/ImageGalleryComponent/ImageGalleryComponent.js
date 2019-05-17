@@ -53,7 +53,7 @@ export default class ImageGalleryComponent extends Component {
         return(
             <View syle= { styles.flexContainer }>
                 <View style={ styles.imgContainer }>
-                    <Image style= { styles.img1} source={{uri: images["1"]}} />
+                    <Image style= { styles.img1} source={{uri:images["1"]}} />
                     <Image style= { styles.img2} source={{uri:images["2"]}} />
                     <Image style= { styles.img3} source={{uri:images["3"]}} />
                 </View>

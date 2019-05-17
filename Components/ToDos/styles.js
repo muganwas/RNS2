@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
     padding: 10,
     height: Dimensions.get('window').height,
     width: Dimensions.get('window').width,
-    backgroundColor: '#42d9f4',
   },
   innerEl: {
     borderColor: '#e8f7f9',
@@ -19,6 +18,7 @@ export const styles = StyleSheet.create({
     margin: 5
   },
   text: {
+    flex:3,
     color: "#ffffff",
   },
   toolBar: {
@@ -26,6 +26,14 @@ export const styles = StyleSheet.create({
     backgroundColor: "rgba(186,1,27,1)",
     padding: 3,
     color: "#fff"
+  },
+  chckbox: {
+    width: 15,
+    height: 15
+  },
+  todoView: {
+    flex: 1,
+    flexDirection: 'row'
   },
   welcome: {
     fontSize: 20,

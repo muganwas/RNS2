@@ -8,32 +8,50 @@ export const styles = StyleSheet.create({
     padding: 10,
     height: Dimensions.get('window').height,
     width: Dimensions.get('window').width,
-    backgroundColor: '#42d9f4',
   },
   innerEl: {
-    borderColor: '#e8f7f9',
+    margin: 5,
+    paddingTop: 2,
+    borderColor: '#fff',
+    elevation: 2,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.20,
+    shadowRadius: 1.41,
     borderRadius: 4,
-    backgroundColor: '#FEAD17',
+    borderWidth: 1
+  },
+  input: {
+    borderColor: '#D2D1D3',
+    marginBottom: 10,
+    marginLeft: 3,
+    marginRight: 3,
+    paddingTop: 5,
+    paddingBottom: 5,
+    borderRadius: 2,
+    borderWidth: 1
+  },
+  btn: {
+    backgroundColor: "#FE3217",
+    marginTop: 10,
     padding: 5,
-    borderWidth: 1,
-    margin: 5
+    justifyContent: 'center',
+    borderRadius: 3
   },
-  text: {
-    color: "#ffffff",
+  btnText: {
+    color: '#fff',
+    textAlign: 'center'
   },
-  toolBar: {
-    height: 50,
-    backgroundColor: "rgba(186,1,27,1)",
-    padding: 3,
-    color: "#fff"
+  switchTitle: {
+    color: '#424242',
+    padding: 5
   },
-  welcome: {
-    fontSize: 20,
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  swtch: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    marginLeft: 5
+  }
 });

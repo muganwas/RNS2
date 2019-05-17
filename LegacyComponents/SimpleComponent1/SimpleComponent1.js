@@ -5,10 +5,11 @@ import { styles } from './styles';
 
 export default class SimpleComponent1 extends Component {
     render(){
+        let { message } = this.props;
         return(
             <View style= { styles.container }>
                 <View style={ styles.innerEl }>
-                    <Text style= { styles.welcome}>{ this.props.message }</Text>
+                    <Text style= { styles.welcome}>{ message }</Text>
                 </View>
             </View>
         )
