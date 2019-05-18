@@ -28,12 +28,31 @@ export const styles = StyleSheet.create({
     color: "#fff"
   },
   chckbox: {
+    flex: 1,
     width: 15,
-    height: 15
+    height: 15,
+    padding: 10
   },
   todoView: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  editContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  editTodo: {
+    flex:5,
+    padding: 5,
+    borderColor: '#FECD71',
+    borderWidth: 1,
+    borderRadius: 3
+  },
+  editIcon: {
+    height: 15,
+    width: 15
   },
   welcome: {
     fontSize: 20,

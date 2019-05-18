@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text, FlatList, TouchableHighlight, CheckBox, Image } from 'react-native';
+import { ScrollView, View, Text, FlatList, TouchableHighlight, Image } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import CheckBox from 'react-native-check-box';
 import Checked from './images/check.png';
 import PropTypes from 'prop-types';
 import { styles } from './styles';
@@ -37,7 +38,11 @@ export default class ToDos extends Component {
                 let todos = [];
                 let initTodos = JSON.parse(res);
                 Object.keys(initTodos).map(key=>{
-                    todos.push({ key: initTodos[key].text, value: initTodos[key].completed });
+                    todos.push({ 
+                        key: initTodos[key].text,
+                        id: initTodos[key].id,
+                        value: initTodos[key].completed 
+                    });
                 });
                 //console.log(todos)
                 this.setState({todos});
@@ -52,7 +57,7 @@ export default class ToDos extends Component {
     }
 
     toggleCompleted = (value)=>{
-        //console.log(value)
+        console.log(value)
     }
 
     render(){
@@ -65,14 +70,29 @@ export default class ToDos extends Component {
                     <AddButton onPress={ ()=>navigate('Second') } />
                     <FlatList
                         data={ todos }
-                        renderItem={({item})=><TouchableHighlight
-                        onPress= { ()=>this.onClickToDo(item) }
-                        key={item.key} style={styles.innerEl} >
+                        renderItem={({item})=>
+                        <View
+                            key={item.key} 
+                            style={styles.innerEl} 
+                        >
                             <View style = { styles.todoView}> 
-                                <Text style={styles.text }>{ item.key }</Text>
-                                { item.value?<Image style= { styles.chckbox } source={require('./images/check.png')} />:null }
+                                <TouchableHighlight
+                                    style={ styles.editTodo }
+                                    onPress= { ()=>this.onClickToDo(item) }
+                                >
+                                    <View style={ styles.editContainer }>
+                                        <Text style={ styles.text }>{ item.key }</Text>
+                                        <Image style={ styles.editIcon } source={require('./images/edit.png')} />
+                                    </View>
+                                </TouchableHighlight>
+                                <CheckBox
+                                    isChecked={ item.value }
+                                    style= { styles.chckbox }
+                                    onClick={ ()=>this.toggleCompleted(item.id) }
+                                    checkBoxColor={'#fff'}
+                                />
                             </View>
-                        </TouchableHighlight>}
+                        </View>}
                     />
                 </View>
             </ScrollView>
