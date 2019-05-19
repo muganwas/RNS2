@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import PropTypes from 'prop-types';
 import { styles } from './styles';
 
-export default class AddToDo extends Component {
+export default class EditToDo extends Component {
     constructor(){
         super();
 
@@ -17,7 +17,7 @@ export default class AddToDo extends Component {
     }
 
     static navigationOptions = {
-        title: 'Add To Dos',
+        title: 'Edit To Do',
         headerTitleStyle :{
             textAlign: 'center'
         },
@@ -27,50 +27,60 @@ export default class AddToDo extends Component {
     }
 
     componentWillMount(){
-        this.getToDos();
+        this.getToDo();
     }
-
-    componentDidMount(){
-        this.generateId();
-    }
-
-    generateId(){
-        let id = Math.floor(Math.random() * 1000000);
-        this.setState({id});
-    }
-
+    
     updateText = (key)=>{
         this.setState({key});
     }
 
     updateCompleted = ( completed )=>{
-        console.log(completed)
         this.setState({completed});
     }
 
-    getToDos = ()=>{
+    getToDo = ()=>{
+        let { navigation } = this.props;
+        let { state } = navigation;
+        let { params } = state;
         AsyncStorage.getItem('todos', (err, result)=>{
             if(!err){
                 if(result){
                     let todos = JSON.parse(result);
                     this.setState({todos});
-                    console.log(result);
+                    Object.keys(todos).map(key=>{
+                        let currId = todos[key].id;
+                        if( params === currId ){
+                            //console.log(todos[key]);
+                            this.setState({
+                                id: params,
+                                key: todos[key].key,
+                                completed: todos[key].completed,
+                                todos
+                            })
+                        }
+                    })
+                    //console.log(result);
                 }
             }else
-                console.log(err)
+                console.log(err);
         });
     }
 
-    saveToDo = ()=>{
+    updateToDo = ()=>{
         let { id, key, completed, todos } = this.state;
-        let currTodo = { id, key, completed };
+        todos.map(res=>{
+            if(res.id === id){
+                res.key = key;
+                res.completed = completed;
+            }
+        });
+        //console.log(todos);
         if(AsyncStorage && key.length > 0 && todos){
-            todos.push(currTodo);
-            console.log(todos);
+            //console.log(todos)
             AsyncStorage.setItem('todos', JSON.stringify(todos)).then(res=>{
                 const { navigation } = this.props;
                 const { navigate } = navigation;
-                navigate('First', {...todos});
+                navigate('First');
             }).catch(err=>{
                 console.log(err)
             });
@@ -80,7 +90,7 @@ export default class AddToDo extends Component {
     }
 
     render(){
-        let { message } = this.props,
+        let { id } = this.props,
         { key, completed } = this.state;
         return(
             <View style= { styles.container }>
@@ -101,7 +111,7 @@ export default class AddToDo extends Component {
                     </View>
                     <TouchableHighlight
                         style = { styles.btn }
-                        onPress = { this.saveToDo }
+                        onPress = { this.updateToDo }
                     >
                         <Text style = { styles.btnText }>Submit</Text>
                     </TouchableHighlight>
@@ -109,12 +119,4 @@ export default class AddToDo extends Component {
             </View>
         )
     }
-}
-
-AddToDo.defaultProps = {
-    message: "Create Todo"
-}
-
-AddToDo.propTypes = {
-    message: PropTypes.string.isRequired
 }

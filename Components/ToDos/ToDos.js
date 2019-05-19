@@ -10,7 +10,7 @@ import AddButton from '../AddButton/AddButton';
 export default class ToDos extends Component {
     constructor(props){
         super(props);
-        this.state = {}
+        this.state = { todos: []}
     }
     static navigationOptions = {
         title: 'To Dos',
@@ -25,6 +25,15 @@ export default class ToDos extends Component {
     }
 
     componentWillMount(){
+        //AsyncStorage.removeItem('todos');
+        const { navigation } = this.props;
+        let { state } = navigation;
+        let { params } = state;
+        if(params){
+            this.setState({todos: params});
+        }else{
+            console.log(params);
+        }
         this.fetchTodos();
     }
 
@@ -35,20 +44,9 @@ export default class ToDos extends Component {
     fetchTodos = ()=>{
         AsyncStorage.getItem('todos').then(res=>{
             if(res){
-                let todos = [];
-                let initTodos = JSON.parse(res);
-                Object.keys(initTodos).map(key=>{
-                    todos.push({ 
-                        key: initTodos[key].text,
-                        id: initTodos[key].id,
-                        value: initTodos[key].completed 
-                    });
-                });
-                //console.log(todos)
+                let todos = JSON.parse(res);
                 this.setState({todos});
-            }else
-                console.log("Theres nothing in async")
-                
+            }               
         });
     }
 
@@ -56,8 +54,22 @@ export default class ToDos extends Component {
         console.log(item)
     }
 
-    toggleCompleted = (value)=>{
-        console.log(value)
+    toggleCompleted = (id, value)=>{
+        let { todos } = this.state;
+        //console.log(id, " ", value)
+        todos.map(key=>{
+            if(key.id === id){
+                key.completed = !value;
+            }
+        });
+        if(AsyncStorage && todos){
+            AsyncStorage.setItem('todos', JSON.stringify(todos)).then(res=>{
+                this.setState({todos});
+                this.fetchTodos();
+            });
+        }  
+        else
+            console.log('There was an error');
     }
 
     render(){
@@ -78,7 +90,7 @@ export default class ToDos extends Component {
                             <View style = { styles.todoView}> 
                                 <TouchableHighlight
                                     style={ styles.editTodo }
-                                    onPress= { ()=>this.onClickToDo(item) }
+                                    onPress= { ()=>navigate( 'Third', item.id ) }
                                 >
                                     <View style={ styles.editContainer }>
                                         <Text style={ styles.text }>{ item.key }</Text>
@@ -86,9 +98,9 @@ export default class ToDos extends Component {
                                     </View>
                                 </TouchableHighlight>
                                 <CheckBox
-                                    isChecked={ item.value }
+                                    isChecked={ item.completed }
                                     style= { styles.chckbox }
-                                    onClick={ ()=>this.toggleCompleted(item.id) }
+                                    onClick={ ()=>this.toggleCompleted(item.id, item.completed)}
                                     checkBoxColor={'#fff'}
                                 />
                             </View>

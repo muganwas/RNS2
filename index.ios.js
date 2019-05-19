@@ -8,7 +8,8 @@ import {name as appName} from './app.json';
 import { View, Text } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import ToDos from './Components/ToDos/ToDos';
-import AddToDO from './Components/AddToDo/AddToDo';
+import AddToDo from './Components/AddToDo/AddToDo';
+import EditToDo from './Components/EditToDo/EditToDo';
 
 const screen2Config = {
     duration: 200,
@@ -18,7 +19,8 @@ const screen2Config = {
 
 const MainNavigator = createStackNavigator({
     First: { screen: ToDos },
-    Second: { screen: AddToDO}
+    Second: { screen: AddToDo },
+    Third: { screen: EditToDo }
 },  
 {
     initialRouteName: 'First',
