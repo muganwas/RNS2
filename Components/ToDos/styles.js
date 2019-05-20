@@ -13,7 +13,6 @@ export const styles = StyleSheet.create({
     borderColor: '#e8f7f9',
     borderRadius: 4,
     backgroundColor: '#FEAD17',
-    padding: 5,
     borderWidth: 1,
     margin: 5
   },
@@ -46,6 +45,7 @@ export const styles = StyleSheet.create({
   editTodo: {
     flex:5,
     padding: 5,
+    margin: 5,
     borderColor: '#FECD71',
     borderWidth: 1,
     borderRadius: 3

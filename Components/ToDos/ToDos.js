@@ -6,11 +6,15 @@ import Checked from './images/check.png';
 import PropTypes from 'prop-types';
 import { styles } from './styles';
 import AddButton from '../AddButton/AddButton';
+import Swipeout from 'react-native-swipeout';
 
 export default class ToDos extends Component {
     constructor(props){
         super(props);
-        this.state = { todos: []}
+        this.state = { 
+            todos: [],
+            currToDoId: ''
+        }
     }
     static navigationOptions = {
         title: 'To Dos',
@@ -32,7 +36,7 @@ export default class ToDos extends Component {
         if(params){
             this.setState({todos: params});
         }else{
-            console.log(params);
+            //console.log(params);
         }
         this.fetchTodos();
     }
@@ -48,10 +52,6 @@ export default class ToDos extends Component {
                 this.setState({todos});
             }               
         });
-    }
-
-    onClickToDo = (item)=>{
-        console.log(item)
     }
 
     toggleCompleted = (id, value)=>{
@@ -72,10 +72,46 @@ export default class ToDos extends Component {
             console.log('There was an error');
     }
 
+    deleteToDo = ()=>{
+        let { todos, currToDoId } = this.state;
+        //iterate and remove
+        for(let count = 0; count < todos.length; count++){
+            if(todos[count].id === currToDoId){
+                todos.splice(count, 1);         
+            }
+        };
+        if(AsyncStorage && todos){
+            //console.log(todos)
+            AsyncStorage.setItem('todos', JSON.stringify(todos)).then(res=>{
+                this.setState({todos});
+            });
+        }  
+        else
+            console.log('There was an error');
+    }
+
+    onSwipe = (id)=>{
+        if(id){
+            this.setState({currToDoId:id});
+            console.log(id)
+        }     
+    }
+
     render(){
         let { todos } = this.state;
         const { navigation } = this.props;
         const { navigate } = navigation;
+
+        //on swipe button config
+        const swipeOutBtn = [
+            {
+                text: "Delete",
+                backgroundColor: "#FE3217",
+                type: "delete",
+                onPress: this.deleteToDo
+            }
+        ];
+
         return(
             <ScrollView>
                 <View style={ styles.container } >
@@ -83,9 +119,11 @@ export default class ToDos extends Component {
                     <FlatList
                         data={ todos }
                         renderItem={({item})=>
-                        <View
+                        <Swipeout
+                            right={ swipeOutBtn }
                             key={item.key} 
-                            style={styles.innerEl} 
+                            style={styles.innerEl}
+                            onOpen = { ()=>this.onSwipe(item.id) }
                         >
                             <View style = { styles.todoView}> 
                                 <TouchableHighlight
@@ -104,7 +142,7 @@ export default class ToDos extends Component {
                                     checkBoxColor={'#fff'}
                                 />
                             </View>
-                        </View>}
+                        </Swipeout>}
                     />
                 </View>
             </ScrollView>

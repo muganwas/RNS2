@@ -113,7 +113,7 @@ export default class EditToDo extends Component {
                         style = { styles.btn }
                         onPress = { this.updateToDo }
                     >
-                        <Text style = { styles.btnText }>Submit</Text>
+                        <Text style = { styles.btnText }>Save</Text>
                     </TouchableHighlight>
                 </View>
             </View>
