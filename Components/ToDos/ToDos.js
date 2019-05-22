@@ -128,7 +128,7 @@ export default class ToDos extends Component {
                             <View style = { styles.todoView}> 
                                 <TouchableHighlight
                                     style={ styles.editTodo }
-                                    onPress= { ()=>navigate( 'Third', item.id ) }
+                                    onPress= { ()=>navigate( 'Third', { id:item.id, title:item.key } ) }
                                 >
                                     <View style={ styles.editContainer }>
                                         <Text style={ styles.text }>{ item.key }</Text>

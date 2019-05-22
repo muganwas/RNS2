@@ -16,18 +16,22 @@ export default class EditToDo extends Component {
         }
     }
 
-    static navigationOptions = {
-        title: 'Edit To Do',
+    static navigationOptions =({navigation})=> ({
+        title: `${navigation.state.params.title}`,
         headerTitleStyle :{
             textAlign: 'center'
         },
         headerStyle:{
             backgroundColor:'white',
         },
-    }
+    })
 
     componentWillMount(){
         this.getToDo();
+    }
+
+    componentDidMount(){
+        let { key } = this.state;
     }
     
     updateText = (key)=>{
@@ -49,10 +53,10 @@ export default class EditToDo extends Component {
                     this.setState({todos});
                     Object.keys(todos).map(key=>{
                         let currId = todos[key].id;
-                        if( params === currId ){
+                        if( params.id === currId ){
                             //console.log(todos[key]);
                             this.setState({
-                                id: params,
+                                id: params.id,
                                 key: todos[key].key,
                                 completed: todos[key].completed,
                                 todos
