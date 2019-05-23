@@ -1,5 +1,5 @@
 {
-  "name": "ADTodo",
+  "name": "adtodo",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -15,7 +15,7 @@
     "jest-haste-map": "24.0.0",
     "prop-types": "^15.7.2",
     "react": "16.8.3",
-    "react-native": "^0.59.5",
+    "react-native": "0.59.8",
     "react-native-check-box": "^2.1.7",
     "react-native-elements": "^1.1.0",
     "react-native-gesture-handler": "^1.2.1",
