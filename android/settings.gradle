@@ -1,0 +1,3 @@
+rootProject.name = 'adtodo'
+
+include ':app'
