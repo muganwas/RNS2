@@ -1,4 +1,4 @@
-package com.sampleapp;
+package com.adtodo;
 
 import android.app.Application;
 
