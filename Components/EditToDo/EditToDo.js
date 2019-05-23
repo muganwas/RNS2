@@ -62,7 +62,7 @@ export default class EditToDo extends Component {
                                 todos
                             })
                         }
-                    })
+                    });
                     //console.log(result);
                 }
             }else
