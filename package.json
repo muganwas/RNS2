@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@react-native-community/slider": "^1.0.4",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "jest-haste-map": "24.0.0",
     "prop-types": "^15.7.2",
     "react": "16.8.3",
